@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class FrequencyCheckerImpl implements FrequencyChecker {
 
-  private final double MIN_ALLOWED_TIME_INTEVAL;  // minimum allowed time interval between messages in nanoseconds
+  private final double MIN_ALLOWED_TIME_INTEVAL;  // minimum allowed time interval between messages
   private AtomicLong lastMessageTs;
 
   public FrequencyCheckerImpl(int messagesPerMinute) {

@@ -11,18 +11,18 @@ class FrequencyCheckerImplTest {
   private FrequencyChecker frequencyChecker;
 
   @Test
-  void givenMessagesPerMinute_whenSendMessagesWithAllowedRate_thenSucceed() {
+  void givenMessagesPerMinute_whenSendMessagesWithAllowedRate_thenAllMessagesProcessed() {
 
     //Given
-    int messagesPerMinute = 5000;
-    long allowedTimeInterval = 60_000 / messagesPerMinute + 1;
+    int messagesPerMinute = 6500;
+    double allowedTimeInterval = 60_000D / messagesPerMinute;
     frequencyChecker = new FrequencyCheckerImpl(messagesPerMinute);
 
     //When
     IntStream.range(0, 100).forEach(message -> {
       assertTrue(frequencyChecker.isAllowed());
       try {
-        Thread.sleep(allowedTimeInterval);
+        Thread.sleep((long) allowedTimeInterval + 1);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
